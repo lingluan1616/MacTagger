@@ -86,6 +86,8 @@ MacTagger 以 [MIT 许可证](LICENSE) 发布，© 2026 lingluan1616。
 
 App 动态链接并嵌入了 TagLib（LGPL-2.1 / MPL-1.1）、OpenCC（Apache-2.0）和 marisa-trie（BSD-2-Clause / LGPL-2.1）。详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)，其中说明了如何替换 App 内的 `libtag.2.dylib`。
 
+构建时 `MacTagger/Scripts/embed-dylibs.sh` 会把 [third_party/licenses/](third_party/licenses/) 里的四份许可证原文和 THIRD_PARTY_NOTICES.md 一并拷进 `MacTagger.app/Contents/Resources/Licenses/`，随 App 分发。
+
 ---
 
 ## English

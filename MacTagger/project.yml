@@ -82,6 +82,10 @@ targets:
     sources:
       - path: Sources/App
       - path: Sources/TagKit
+      # App 图标资源目录（AppIcon.appiconset，10 档 PNG）。只挂 xcassets 本身——
+      # 同目录的 AppIcon-source.svg 是设计源文件，不进 App 包。
+      - path: Resources/Assets.xcassets
+        buildPhase: resources
     dependencies:
       - target: TagLibBridge
       - sdk: libz.tbd
@@ -89,6 +93,8 @@ targets:
     settings:
       base:
         PRODUCT_NAME: MacTagger
+        # actool 据此生成 AppIcon.icns 并往 Info.plist 写 CFBundleIconFile / CFBundleIconName
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         PRODUCT_BUNDLE_IDENTIFIER: com.lingluan.mactagger
         MARKETING_VERSION: "0.7.7"
         CURRENT_PROJECT_VERSION: "14"

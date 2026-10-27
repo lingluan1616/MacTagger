@@ -7,7 +7,7 @@
 #  由 project.yml 的 postBuildScripts 调用：编译/链接之后、Xcode 自动签名之前
 #  （Xcode 的 CodeSign 永远是 target 的最后一步，排在所有构建阶段之后）。
 #
-#  做五件事：
+#  做六件事：
 #    1. 把 libtag / libopencc 及其在 Homebrew 前缀下的**全部传递依赖**（BFS 闭包，
 #       目前是 libmarisa）拷进 Contents/Frameworks；
 #    2. 把各库自身的 LC_ID_DYLIB 改成 @rpath/<名字>，库与库之间的绝对路径引用改成 @rpath；
@@ -15,7 +15,9 @@
 #       MacTagger.debug.dylib / __preview.dylib、Contents/Frameworks 下非本脚本嵌入的）
 #       对这些库的引用改成 @rpath，并删掉它们指向 Homebrew 的 LC_RPATH；
 #    4. 把 <prefix>/share/opencc 的 *.json / *.ocd2 拷进 Contents/Resources/opencc；
-#    5. 给每个改过的嵌套 Mach-O 重新 ad-hoc 签名（arm64 上签名失效 = dyld 直接拒载）。
+#    5. 给每个改过的嵌套 Mach-O 重新 ad-hoc 签名（arm64 上签名失效 = dyld 直接拒载）；
+#    6. 把仓库根 third_party/licenses/ 的许可证原文与 THIRD_PARTY_NOTICES.md 拷进
+#       Contents/Resources/Licenses（LGPL / MPL / Apache / BSD 都要求随二进制附带原文）。
 #
 #  为什么第 3 步要遍历而不是只改主可执行文件：
 #      Xcode 16 起 Debug 构建默认开 ENABLE_DEBUG_DYLIB，Contents/MacOS/MacTagger 只是个
@@ -260,5 +262,27 @@ for f in $APP_MACHOS; do
 done
 IFS="$OLD_IFS"
 log "已 ad-hoc 重签：$SIGNED"
+
+# ---------------------------------------------------------------- 6. 第三方许可证原文
+
+# 分发二进制时必须附带各组件许可证原文：TagLib（LGPL-2.1 / MPL-1.1）、
+# OpenCC（Apache-2.0）、marisa-trie（BSD-2 / LGPL-2.1）。仓库根 = $SRCROOT/..
+REPO_ROOT="$(cd "${SRCROOT:-$(dirname "$0")/..}/.." && pwd)"
+LIC_SRC="$REPO_ROOT/third_party/licenses"
+LIC_DST="$APP_RESOURCES/Licenses"
+
+[ -d "$LIC_SRC" ] || die "找不到许可证目录 $LIC_SRC"
+[ -f "$REPO_ROOT/THIRD_PARTY_NOTICES.md" ] || die "找不到 $REPO_ROOT/THIRD_PARTY_NOTICES.md"
+LIC_FILES="$(find "$LIC_SRC" -maxdepth 1 -type f ! -name '.*')"
+[ -n "$LIC_FILES" ] || die "$LIC_SRC 里没有许可证文件"
+
+# 幂等：整目录重建，仓库里删掉的许可证文件不会残留在包里
+rm -rf "$LIC_DST"
+mkdir -p "$LIC_DST"
+OLD_IFS="$IFS"; IFS=$'\n'
+for f in $LIC_FILES; do cp "$f" "$LIC_DST/"; done
+IFS="$OLD_IFS"
+cp "$REPO_ROOT/THIRD_PARTY_NOTICES.md" "$LIC_DST/"
+log "许可证原文：$(ls -1 "$LIC_DST" | wc -l | tr -d ' ') 个文件 → $LIC_DST"
 
 log "完成。Frameworks=$APP_FRAMEWORKS"
