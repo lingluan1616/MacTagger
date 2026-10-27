@@ -1,0 +1,162 @@
+# MacTagger — XcodeGen 工程描述
+#
+# 重新生成 xcodeproj：
+#     cd MacTagger && xcodegen generate      # 在仓库根目录执行
+#
+# xcodeproj 是 xcodegen 产物，不进仓库；先 generate 再编译：
+#     xcodebuild -project MacTagger.xcodeproj -scheme MacTagger      -configuration Debug build
+#     xcodebuild -project MacTagger.xcodeproj -scheme mactagger-probe -configuration Debug build
+#
+# 依赖分两层：
+#
+#   * **编译期**：这台机器需要 Homebrew 的 taglib 与 opencc
+#     （brew install taglib opencc），头文件与库都在 /opt/homebrew 下。
+#   * **运行期**：MacTagger.app **不依赖 Homebrew**。构建阶段
+#     `Scripts/embed-dylibs.sh` 会把 libtag / libopencc / libmarisa 拷进
+#     Contents/Frameworks（改成 @rpath 引用 + ad-hoc 重签），把
+#     /opt/homebrew/share/opencc 的 *.json / *.ocd2 拷进 Contents/Resources/opencc，
+#     并删掉可执行文件里指向 /opt/homebrew/lib 的 LC_RPATH。
+#     两个库都保持**动态链接** —— TagLib 是 LGPL-2.1 / MPL-1.1 双许可，动态链接
+#     让用户可以替换 Contents/Frameworks/libtag.2.dylib；OpenCC 是 Apache-2.0，
+#     marisa-trie 是 BSD-2 / LGPL-2.1 双许可（详见仓库根 THIRD_PARTY_NOTICES.md）。
+#
+#   CLI（mactagger-probe）是开发工具，仍从 Homebrew 加载，不做嵌入。
+
+name: MacTagger
+
+options:
+  bundleIdPrefix: com.lingluan
+  deploymentTarget:
+    macOS: "14.4"
+  createIntermediateGroups: true
+  developmentLanguage: zh-Hans
+  minimumXcodeGenVersion: "2.38.0"
+  generateEmptyDirectories: false
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CLANG_CXX_LANGUAGE_STANDARD: "c++17"
+    CLANG_CXX_LIBRARY: "libc++"
+    GCC_C_LANGUAGE_STANDARD: "gnu17"
+    CLANG_ENABLE_OBJC_ARC: YES
+    CLANG_ENABLE_MODULES: YES
+    ALWAYS_SEARCH_USER_PATHS: NO
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+    DEAD_CODE_STRIPPING: YES
+    # Homebrew taglib（Apple Silicon 前缀）。Intel Mac 改成 /usr/local。
+    HEADER_SEARCH_PATHS:
+      - "$(SRCROOT)/Sources/TagLibBridge/include"
+      - "/opt/homebrew/include"
+      - "/opt/homebrew/include/taglib"
+    LIBRARY_SEARCH_PATHS:
+      - "/opt/homebrew/lib"
+    # 本地开发用 ad-hoc 签名，不做分发签名（用户要求发布前先问）。
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: ""
+    ENABLE_HARDENED_RUNTIME: NO
+
+targets:
+
+  # ---------------------------------------------------------------- 桥接层
+  # 纯 Objective-C++ 静态库，App 与 CLI 共用，避免 .mm 被编译两遍。
+  TagLibBridge:
+    type: library.static
+    platform: macOS
+    sources:
+      - path: Sources/TagLibBridge
+        headerVisibility: project
+    settings:
+      base:
+        PRODUCT_NAME: TagLibBridge
+        SKIP_INSTALL: YES
+        DEFINES_MODULE: NO
+        GCC_WARN_ABOUT_RETURN_TYPE: YES
+        CLANG_WARN_DOCUMENTATION_COMMENTS: NO
+
+  # ---------------------------------------------------------------- 冒烟 App
+  MacTagger:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/App
+      - path: Sources/TagKit
+    dependencies:
+      - target: TagLibBridge
+      - sdk: libz.tbd
+      - sdk: libsqlite3.tbd
+    settings:
+      base:
+        PRODUCT_NAME: MacTagger
+        PRODUCT_BUNDLE_IDENTIFIER: com.lingluan.mactagger
+        MARKETING_VERSION: "0.7.7"
+        CURRENT_PROJECT_VERSION: "14"
+        INFOPLIST_FILE: Support/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        SWIFT_OBJC_BRIDGING_HEADER: Support/MacTagger-Bridging-Header.h
+        COMBINE_HIDPI_IMAGES: YES
+        # 只留 App 包内的 Frameworks。**绝不能**再挂 /opt/homebrew/lib ——
+        # 挂着的话这台装了 Homebrew 的机器会从 Homebrew 兜底加载成功，
+        # 于是永远验证不出「这个包到底自不自包含」，换台干净机器直接起不来。
+        LD_RUNPATH_SEARCH_PATHS:
+          - "$(inherited)"
+          - "@executable_path/../Frameworks"
+        # 链接期仍从 /opt/homebrew/lib 找 -ltag -lopencc（LIBRARY_SEARCH_PATHS，
+        # 见 settings.base）。这是**开发机**的依赖，产物里的引用会被
+        # embed-dylibs.sh 改成 @rpath。
+        OTHER_LDFLAGS:
+          - "-ltag"
+          - "-lopencc"
+          - "-lc++"
+    # 编译/链接之后、Xcode 自动签名之前跑（CodeSign 永远排在所有构建阶段之后）。
+    # basedOnDependencyAnalysis: false —— 不声明输入输出，每次构建都跑；
+    # 脚本本身幂等，重复跑不会二次改写。
+    postBuildScripts:
+      - name: "嵌入 TagLib / OpenCC 动态库与转换数据"
+        script: |
+          "$SRCROOT/Scripts/embed-dylibs.sh"
+        basedOnDependencyAnalysis: false
+        showEnvVars: false
+
+  # ---------------------------------------------------------------- 验证 CLI
+  mactagger-probe:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Sources/Probe
+      - path: Sources/TagKit
+    dependencies:
+      - target: TagLibBridge
+      - sdk: libz.tbd
+      - sdk: libsqlite3.tbd
+    settings:
+      base:
+        PRODUCT_NAME: mactagger-probe
+        PRODUCT_BUNDLE_IDENTIFIER: com.lingluan.mactagger.probe
+        SWIFT_OBJC_BRIDGING_HEADER: Support/MacTagger-Bridging-Header.h
+        # CLI 是开发工具，照旧从 Homebrew 加载（不嵌入）。测试 App 内那份 OpenCC
+        # 数据时用环境变量喂：MACTAGGER_OPENCC_DIR=<App>/Contents/Resources/opencc
+        LD_RUNPATH_SEARCH_PATHS:
+          - "$(inherited)"
+          - "/opt/homebrew/lib"
+        OTHER_LDFLAGS:
+          - "-ltag"
+          - "-lopencc"
+          - "-lc++"
+
+schemes:
+  MacTagger:
+    build:
+      targets:
+        MacTagger: all
+    run:
+      config: Debug
+    archive:
+      config: Release
+  mactagger-probe:
+    build:
+      targets:
+        mactagger-probe: all
+    run:
+      config: Debug

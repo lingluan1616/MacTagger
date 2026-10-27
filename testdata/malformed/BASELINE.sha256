@@ -1,0 +1,32 @@
+# MacTagger 畸形夹具基线（sha256，一行一个文件）
+#
+# 生成方式：cd <repo> && python3 tools/gen_malformed.py testdata testdata/malformed
+# 记录时间：2026-09-05 00:43:10 +08
+# 核对方式：tools/verify_fixtures.sh（退出码非零 = 夹具已被污染）
+#           或 cd testdata/malformed && shasum -a 256 -c BASELINE.sha256
+#
+# 另有两个不进 sha 列表的条目，由 verify_fixtures.sh 单独核对：
+#   a_directory.mp3  —— 伪装成文件名的目录（必须存在且是目录）
+#   readonly.mp3     —— 必须保持 0444，用来验证写入路径的权限判断
+#
+# 红线：任何 probe 都不许就地改写本目录。robust 子命令已改为先整目录复制到
+#       临时区再跑（Sources/Probe/main.swift cmdRobust）。若本文件核对失败，
+#       说明又有代码在原地写夹具了 —— 先查是谁写的，再重建。
+4cbbd9be0cba685835755f827758705db5a413c5494c34262cd25946a73e7582  allzero.wav
+028ea4e0b9194b31aff29b5feffe1c7b37da8b61371ff0ea6fc01c60c159a4d4  bad_block_size.flac
+f8a2c2d1a27893a2e7bf66382c2f9e3a056e4c1dcdd03463b625fa439433c162  double_id3.mp3
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  empty.mp3
+8178e89bdc8ffa76c432963875d1cffbfbd837826064c58d5b2904d7498d7d00  flac_content_named.mp3
+4952057dd85dad644ec8a3d6e4d888ecd59c8906d0c2aacedb9c6f85f5e527b3  huge_id3_size.mp3
+0d0482bd0cdfea54f4511a69b9f8d7a74ae37a369e4144147afc90fb239db719  lying_frame_size.mp3
+b65e5e651d0950d0666a7ff670bce9560ce48742c9ea4dc335c337293f470aab  oversize_riff.wav
+1c0477cbc7f41a1f268d2226056a667304340833bbb07142e6d93f847c97b3cb  plaintext.mp3
+b5a937215bb79c4434f936dcad4ece9a138fd54f2a7d8ad651f8ba90c3929219  random.m4a
+696acde854f2f715d53125b368e79fa8ed19f2d75f39e8979e697c299ffb35d7  readonly.mp3
+6e5f9f14646cf45927788574e8c72f19cdf94116c2dbb1b7cc77bc1b5ea048ab  scribbled.flac
+70bf93310284b039f237e82db4407df3e3ca642fac2b9ebb02973764424c7418  tiny.flac
+0ae15b93b0f083c86a790a08384cf791c16e8c05a719feeeaebf266a1ff40f9b  truncated.flac
+a064a241b91ef9d07eb02a702ae1dd57ecf3516e8a9636c85368b1c5c803f51e  truncated.m4a
+f2001aa390724309d9c018601bdf2d7e7c85d1ef63ce3fcb4f7b2a7a5977b95a  truncated.mp3
+4099257b004a36c1259dbcacb4d759810f6262f4c5c349057ca94ce9c936d30c  truncated.ogg
+c86a3feab75d126b22dce19593636b50bd975e9f11482029548b21b987244b38  zero_atom.m4a

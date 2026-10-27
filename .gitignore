@@ -1,0 +1,17 @@
+# 开发期调研与过程报告（不发布）
+/research/
+# 本地设计工作区与开发计划（发布用副本在 docs/）
+/design/
+/PLAN.md
+
+# 构建产物
+MacTagger/build*/
+MacTagger/Dist/
+*.dmg
+
+# xcodegen 产物：由 MacTagger/project.yml 生成，不进仓库
+MacTagger/MacTagger.xcodeproj/
+*.xcodeproj/xcuserdata/
+
+# macOS
+.DS_Store

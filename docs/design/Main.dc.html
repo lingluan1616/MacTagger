@@ -1,0 +1,320 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system, "SF Pro Text", "PingFang SC", "Helvetica Neue", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #2f6fed; } a:hover { color: #2f6fed; opacity: .8; }
+  </style>
+</helmet>
+<div style="width:1440px;height:900px;background:#e9e7e3;display:flex;align-items:center;justify-content:center;">
+  <div style="width:1300px;height:790px;border-radius:12px;overflow:hidden;background:#f6f5f3;box-shadow:0 14px 34px rgba(0,0,0,0.26),0 0 0 1px rgba(0,0,0,0.18);display:flex;flex-direction:column;color:#1d1d1f;">
+    <div style="display:flex;align-items:center;height:38px;padding:0 14px;background:rgba(246,245,243,0.96);gap:8px;flex:none;">
+      <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;"></span><span style="width:12px;height:12px;border-radius:50%;background:#febc2e;"></span><span style="width:12px;height:12px;border-radius:50%;background:#28c840;"></span>
+      <div style="flex:1;text-align:center;font-size:13px;font-weight:600;color:#6e6e73;margin-right:44px;">MacTagger</div>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:4px;height:50px;padding:0 14px 0 12px;background:rgba(246,245,243,0.96);border-bottom:1px solid rgba(0,0,0,0.08);flex:none;">
+      <div title="添加文件" style="display:flex;align-items:center;gap:6px;height:28px;padding:0 9px;border-radius:7px;color:#6e6e73;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg><span style="font-size:12px;">添加文件</span></div><div title="添加目录" style="display:flex;align-items:center;gap:6px;height:28px;padding:0 9px;border-radius:7px;color:#6e6e73;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M12 11v6M9 14h6"></path></svg><span style="font-size:12px;">添加目录</span></div><div style="width:1px;height:18px;background:rgba(0,0,0,0.08);margin:0 4px;"></div>
+      <div title="保存标签" style="display:flex;align-items:center;gap:6px;height:28px;padding:0 9px;border-radius:7px;color:#2f6fed;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12l4 4v12H4z"></path><path d="M8 4v5h7V4M8 20v-6h8v6"></path></svg><span style="font-size:12px;">保存标签</span></div><div title="撤消" style="display:flex;align-items:center;gap:6px;height:28px;padding:0 9px;border-radius:7px;color:#6e6e73;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10a6 6 0 0 1 0 12h-3"></path></svg><span style="font-size:12px;">撤消</span></div><div style="width:1px;height:18px;background:rgba(0,0,0,0.08);margin:0 4px;"></div>
+      <div title="自动匹配" style="display:flex;align-items:center;gap:6px;height:28px;padding:0 9px;border-radius:7px;color:#6e6e73;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 20 10-10M13 4l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"></path><path d="m18 12 .5 1.5L20 14l-1.5.5L18 16l-.5-1.5L16 14l1.5-.5z"></path></svg><span style="font-size:12px;">自动匹配</span></div><div title="歌词" style="display:flex;align-items:center;gap:6px;height:28px;padding:0 9px;border-radius:7px;color:#6e6e73;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 9h8M8 12h5"></path></svg><span style="font-size:12px;">歌词</span></div><div style="width:1px;height:18px;background:rgba(0,0,0,0.08);margin:0 4px;"></div>
+      <div title="更多" style="display:flex;align-items:center;gap:6px;height:28px;padding:0 9px;border-radius:7px;color:#6e6e73;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12h.01M12 12h.01M16 12h.01"></path></svg><span style="font-size:12px;">更多</span></div>
+      <div style="flex:1;"></div>
+      <div style="display:flex;align-items:center;gap:6px;width:230px;height:26px;padding:0 10px;border-radius:8px;background:rgba(0,0,0,0.05);color:#6e6e73;font-size:12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span>过滤文件</span></div>
+    </div>
+    <div style="display:flex;flex:1;min-height:0;">
+      
+    <div style="display:flex;flex-direction:column;width:206px;flex:none;background:#ece9e4;border-right:1px solid rgba(0,0,0,0.08);padding:10px 10px;gap:4px;">
+      <div style="font-size:11px;font-weight:600;color:#6e6e73;padding:0 8px 6px;">工作目录</div>
+      <div style="display:flex;align-items:center;gap:8px;height:30px;padding:0 8px;border-radius:7px;background:rgba(0,0,0,0.07);color:#1d1d1f;font-size:13px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Music · 2024 整理</span><span style="font-size:11px;padding:1px 7px;border-radius:9px;background:rgba(0,0,0,0.06);color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;">1,284</span></div><div style="display:flex;align-items:center;gap:8px;height:30px;padding:0 8px;border-radius:7px;background:transparent;color:#1d1d1f;font-size:13px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦 全集</span><span style="font-size:11px;padding:1px 7px;border-radius:9px;background:rgba(0,0,0,0.06);color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;">186</span></div><div style="display:flex;align-items:center;gap:8px;height:30px;padding:0 8px;border-radius:7px;background:transparent;color:#1d1d1f;font-size:13px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">待整理</span><span style="font-size:11px;padding:1px 7px;border-radius:9px;background:rgba(0,0,0,0.06);color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;">43</span></div>
+      <div style="flex:1;"></div>
+      <div style="display:flex;gap:6px;color:#6e6e73;padding:0 4px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></div>
+    </div>
+      <div style="display:flex;flex-direction:column;flex:1;min-width:0;background:#ffffff;">
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:28px;padding:0 12px;font-size:11px;font-weight:600;color:#6e6e73;border-bottom:1px solid rgba(0,0,0,0.08);flex:none;"><div style="display:flex;align-items:center;gap:4px;white-space:nowrap;">文件名<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 6-6 6 6"></path></svg></div><div style="white-space:nowrap;">标题</div><div style="white-space:nowrap;">艺术家</div><div style="white-space:nowrap;">专辑</div><div style="text-align:right;white-space:nowrap;">年份</div><div style="text-align:right;white-space:nowrap;">音轨</div><div style="text-align:right;white-space:nowrap;">时长</div><div style="white-space:nowrap;">格式</div></div>
+        <div style="display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;">
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#2f6fed;font-size:12.5px;color:#ffffff;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;border-radius:50%;background:#ffffff;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#c9a227,#6b4f1d);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">稻香 - 周杰伦.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">稻香</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">魔杰座</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2008</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">11/11</div>
+          <div style="text-align:right;color:rgba(255,255,255,0.78);font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:43</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:rgba(255,255,255,0.78);font-size:11.5px;">FLAC · 44.1k/16</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#7fb3d5,#2c5d8a);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">晴天 - 周杰伦.m4a</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">晴天</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">叶惠美</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2003</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3/11</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">4:29</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">AAC · 256k</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#e8c1c5,#8b3a4a);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">月亮代表我的心 - 邓丽君.mp3</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">月亮代表我的心</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">邓丽君</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">岛国之情歌 第四集</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">1977</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3/12</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:29</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">MP3 · 320k</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#d9d2c5,#5a5245);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Blank Space - Taylor Swift.m4a</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Blank Space</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Taylor Swift</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">1989</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2014</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2/13</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:51</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">AAC · 256k</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#f2e394,#b8a12c);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Lemon - 米津玄師.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Lemon</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">米津玄師</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">BOOTLEG</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2017</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">6/14</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">4:16</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 96k/24</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;border-radius:50%;background:#e39a2d;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:rgba(127,127,127,0.14);display:flex;align-items:center;justify-content:center;color:rgba(127,127,127,0.7);flex:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">zzz-无法识别的文件名 12345.ogg</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;"></div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;"></div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">0:02</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">Vorbis · 未知</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#a3c9a8,#3c6e47);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">七里香 - 周杰伦.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">七里香</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">七里香</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2004</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2/10</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">4:59</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 44.1k/16</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#8c8c8c,#2a2a2a);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">以父之名 - 周杰伦.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">以父之名</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">叶惠美</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2003</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2/11</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">5:42</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 44.1k/16</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#5b6b8c,#1d2438);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">夜曲 - 周杰伦.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">夜曲</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">十一月的萧邦</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2005</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">1/12</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:46</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 44.1k/16</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#cfe3ee,#3a6f8f);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">青花瓷 - 周杰伦.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">青花瓷</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">我很忙</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2007</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3/10</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:58</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 44.1k/16</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#f3c6a5,#b0603a);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">甜蜜蜜 - 邓丽君.mp3</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">甜蜜蜜</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">邓丽君</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">难忘的一天</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">1979</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">1/12</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:32</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">MP3 · 320k</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#d8c9a3,#7a6a3f);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">小城故事 - 邓丽君.mp3</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">小城故事</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">邓丽君</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">小城故事</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">1979</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">1/12</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2:47</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">MP3 · 320k</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#d9d2c5,#5a5245);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Style - Taylor Swift.m4a</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Style</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Taylor Swift</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">1989</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2014</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3/13</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:51</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">AAC · 256k</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#d9d2c5,#5a5245);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Shake It Off - Taylor Swift.m4a</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Shake It Off</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Taylor Swift</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">1989</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2014</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">6/13</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:39</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">AAC · 256k</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#f2e394,#b8a12c);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">灰色軌跡 - 米津玄師.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">灰色軌跡</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">米津玄師</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">BOOTLEG</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2017</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3/14</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">4:03</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 96k/24</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#8f6ad1,#3b2a6b);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">双截棍 - 周杰伦.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">双截棍</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">范特西</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2001</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">6/10</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:22</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 44.1k/16</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#8f6ad1,#3b2a6b);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">安静 - 周杰伦.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">安静</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">范特西</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2001</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">10/10</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">5:34</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 44.1k/16</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#7ec4b6,#2b6b60);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">龙卷风 - 周杰伦.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">龙卷风</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Jay</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2000</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">5/10</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:59</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 44.1k/16</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#7ec4b6,#2b6b60);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">星晴 - 周杰伦.flac</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">星晴</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Jay</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2000</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">4/10</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">4:19</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">FLAC · 44.1k/16</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:#f7f6f3;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#e5a5b8,#7d2f4f);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">我只在乎你 - 邓丽君.mp3</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">我只在乎你</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">邓丽君</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">我只在乎你</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">1987</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">1/10</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:50</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">MP3 · 320k</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(190px,1.5fr) 1fr 0.9fr 1.5fr 54px 62px 58px 118px;align-items:center;height:30px;padding:0 12px;background:transparent;font-size:12.5px;color:#1d1d1f;flex:none;">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span style="width:7px;height:7px;flex:none;"></span><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,#c7d3a2,#5f7a2e);flex:none;"></div><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">漫步人生路 - 邓丽君.mp3</span></div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">漫步人生路</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">邓丽君</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">漫步人生路</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">1983</div>
+          <div style="text-align:right;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">2/12</div>
+          <div style="text-align:right;color:#6e6e73;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">3:47</div>
+          <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6e6e73;font-size:11.5px;">MP3 · 320k</div>
+        </div></div>
+        
+    <div style="display:flex;align-items:center;gap:10px;height:26px;padding:0 12px;background:rgba(246,245,243,0.96);border-top:1px solid rgba(0,0,0,0.08);font-size:11px;color:#6e6e73;flex:none;">
+      <span>已选 1 个文件 · 1 项未保存改动 · 1 个文件有警告</span><div style="flex:1;"></div>
+      <span style="padding:1px 8px;border-radius:9px;background:rgba(0,0,0,0.06);font-family:ui-monospace, SFMono-Regular, Menlo, monospace;">总共 1,284</span><span style="padding:1px 8px;border-radius:9px;background:rgba(0,0,0,0.06);font-family:ui-monospace, SFMono-Regular, Menlo, monospace;">已选 1</span><span style="padding:1px 8px;border-radius:9px;background:rgba(0,0,0,0.06);color:#2f6fed;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;">已改 1</span>
+    </div>
+      </div>
+      
+    <div style="display:flex;flex-direction:column;width:336px;flex:none;background:#f6f5f3;border-left:1px solid rgba(0,0,0,0.08);padding:16px;gap:12px;min-height:0;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:4px 0 0;flex:none;">
+          <div style="width:176px;height:176px;border-radius:12px;background:linear-gradient(135deg,#c9a227,#6b4f1d);flex:none;box-shadow:0 10px 26px rgba(0,0,0,0.18);"></div>
+          <div style="text-align:center;"><div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:18px;font-weight:600;color:#1d1d1f;letter-spacing:-0.2px;">稻香<span style="width:7px;height:7px;border-radius:50%;background:#2f6fed;"></span></div><div style="font-size:13px;color:#6e6e73;margin-top:3px;">周杰伦 — 魔杰座 · 2008</div><div style="display:flex;justify-content:center;align-items:center;gap:6px;color:#6e6e73;font-size:11px;margin-top:6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="m3 16 5-5 4 4 3-3 6 6"></path><circle cx="16" cy="9" r="1.5"></circle></svg><span>1 张封面 · 1200×1200</span></div></div>
+        </div>
+      <div style="position:relative;flex:1;min-height:0;overflow:hidden;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:10px;background:#ffffff;border:1px solid rgba(0,0,0,0.08);flex:none;">
+          <div style="font-size:11px;font-weight:600;color:#6e6e73;">标签</div>
+          <div style="display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;align-items:center;">
+          <div style="font-size:12px;color:#6e6e73;text-align:right;">标题</div>
+          <div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">稻香</div>
+        </div><div style="display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;align-items:center;">
+          <div style="font-size:12px;color:#6e6e73;text-align:right;">艺术家</div>
+          <div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+        </div><div style="display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;align-items:center;">
+          <div style="font-size:12px;color:#6e6e73;text-align:right;">专辑</div>
+          <div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">魔杰座</div>
+        </div><div style="display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;align-items:center;">
+          <div style="font-size:12px;color:#6e6e73;text-align:right;">专辑艺术家</div>
+          <div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+        </div><div style="height:1px;background:rgba(0,0,0,0.08);margin:2px 0;"></div><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;"><div style="display:flex;flex-direction:column;gap:4px;"><div style="font-size:11px;color:#6e6e73;">年份</div><div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;">2008</div></div><div style="display:flex;flex-direction:column;gap:4px;"><div style="font-size:11px;color:#6e6e73;">音轨</div><div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;">11 / 11</div></div><div style="display:flex;flex-direction:column;gap:4px;"><div style="font-size:11px;color:#6e6e73;">碟号</div><div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;">1</div></div></div><div style="display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;align-items:center;">
+          <div style="font-size:12px;color:#6e6e73;text-align:right;">风格</div>
+          <div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">国语流行</div>
+        </div><div style="display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;align-items:center;">
+          <div style="font-size:12px;color:#6e6e73;text-align:right;">作曲</div>
+          <div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+        </div><div style="display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;align-items:center;">
+          <div style="font-size:12px;color:#6e6e73;text-align:right;">作词</div>
+          <div style="height:24px;display:flex;align-items:center;padding:0 9px;border-radius:6px;background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);font-size:13px;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">周杰伦</div>
+        </div>
+        </div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:10px;background:#ffffff;border:1px solid rgba(0,0,0,0.08);flex:none;">
+          <div style="font-size:11px;font-weight:600;color:#6e6e73;">歌词</div>
+          <div style="white-space:pre-line;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-size:12px;line-height:1.5;color:#1d1d1f;">[00:30.80]对这个世界如果
+[00:32.63]你有太多的抱怨
+[00:34.26]跌倒了就不敢继续往前走</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#6e6e73;">54 行 · 无翻译</span><span style="font-size:12px;color:#2f6fed;">打开编辑器</span></div>
+        </div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:10px;background:#ffffff;border:1px solid rgba(0,0,0,0.08);flex:none;">
+          <div style="font-size:11px;font-weight:600;color:#6e6e73;">技术参数</div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px;font-size:12px;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-variant-numeric:tabular-nums;">
+      <div style="color:#6e6e73;">时长</div><div style="color:#1d1d1f;">3:43</div>
+      <div style="color:#6e6e73;">比特率</div><div style="color:#1d1d1f;">1 007 kbps</div>
+      <div style="color:#6e6e73;">采样率</div><div style="color:#1d1d1f;">44 100 Hz · 16 bit</div>
+      <div style="color:#6e6e73;">标签格式</div><div style="color:#1d1d1f;">Xiph Comment</div>
+    </div>
+        </div>
+        </div>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:28px;background:linear-gradient(180deg,rgba(0,0,0,0),#f6f5f3);"></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex:none;">
+        <div style="flex:1;height:30px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:#2f6fed;color:#ffffff;font-size:13px;font-weight:600;">保存标签</div>
+        <div style="height:30px;display:flex;align-items:center;padding:0 12px;border-radius:7px;background:#ffffff;border:1px solid rgba(0,0,0,0.08);color:#1d1d1f;font-size:13px;">撤消</div>
+        <div style="height:30px;display:flex;align-items:center;padding:0 10px;border-radius:7px;background:#ffffff;border:1px solid rgba(0,0,0,0.08);color:#6e6e73;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12h.01M12 12h.01M16 12h.01"></path></svg></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
